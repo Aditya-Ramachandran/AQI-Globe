@@ -148,12 +148,11 @@ st.set_page_config(page_title='AQI Globe', layout='wide')
 st.sidebar.header('AQI Globe')
 st.header('AQI Globe')
 st.markdown("*Explore air quality index values across different cities worldwide*")
-# st.markdown("---")
-
-# if btn == False:
-
 
 st.markdown("---")
+
+st.markdown('###### NOTE: *Primary Parameter --- the size of the marker*  AND  *Secondary Parameter --- the color of the marker*')
+
 
 
 # st.sidebar.markdown(
