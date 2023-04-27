@@ -151,7 +151,7 @@ st.markdown("*Explore air quality index values across different cities worldwide
 
 st.markdown("---")
 
-st.markdown('###### NOTE: *Primary Parameter --- the size of the marker*  AND  *Secondary Parameter --- the color of the marker*')
+
 
 
 
@@ -167,6 +167,7 @@ st.markdown('###### NOTE: *Primary Parameter --- the size of the marker*  AND  *
 
 option = st.sidebar.radio('Choose', ['AQI Explorer', 'Learn about AQI Globe'])
 if option == 'AQI Explorer':
+    st.markdown('###### NOTE: *Primary Parameter --- the size of the marker*  AND  *Secondary Parameter --- the color of the marker*')
     country = st.sidebar.selectbox('Select Country', list(sorted(final['Country'].unique())))
 
     temp_df = final[final['Country'] == country]
