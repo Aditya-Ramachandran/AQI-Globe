@@ -18,6 +18,28 @@ def plot_by_country(dataframe, country, param1, param2):
 
     st.subheader('Line chart of {} vs {} for top cities in {}'.format(param1, param2, country))
 
+    col1, col2 =st.columns(2)
+    top1 = dataframe[dataframe['Country'] == country][['City',param1]].sort_values(by = param1, ascending=False).head(25)
+    top2 = dataframe[dataframe['Country'] == country][['City',param2]].sort_values(by = param2, ascending=False).head(25)
+
+    with col1:
+        st.write('Top cities in {} for {}'.format(country, param1))
+        st.dataframe(top1)
+        # fig1 = px.bar(top1, 'City', param1)
+        # st.plotly_chart(fig1)
+        
+    with col2:
+        st.write('Top cities in {} for {}'.format(country, param2))
+        st.dataframe(top2)
+        
+    
+    fig1 = px.bar(top1, 'City', param1, title='{} in top cities in {}'.format(param1, country))
+    st.plotly_chart(fig1)
+    fig2 = px.bar(top2, 'City', param2, title='{} in top cities in {}'.format(param2, country))
+    st.plotly_chart(fig2)
+
+
+
 
 def plot_by_country_city(dataframe, country,city, param1, param2):
     temp_df = dataframe[(dataframe['Country'] == country) & (dataframe['City'] == city)]
@@ -25,6 +47,7 @@ def plot_by_country_city(dataframe, country,city, param1, param2):
     hover_name=temp_df['City'], height=900, width=1200, zoom=4)
     
     st.plotly_chart(fig, use_container_width=True)
+    
 
 
 
