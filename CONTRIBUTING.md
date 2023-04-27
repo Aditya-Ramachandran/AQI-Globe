@@ -25,4 +25,4 @@ I welcome any contributions that improve the functionality or usability of the A
 If you encounter any bugs or issues while using the AQI Streamlit app, please report them by opening an issue in the Github repository. Please provide a detailed description of the issue, including any error messages or screenshots if possible.
 
 ### Contact
-If you have any questions or concerns, please contact me at adityaramachandran25@gmail.com.I appreciate your interest in contributing to our AQI Streamlit app!
+If you have any questions or concerns, please contact me at adityaramachandran25@gmail.com. I appreciate your interest in contributing to our AQI Streamlit app!
