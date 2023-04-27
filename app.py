@@ -40,20 +40,78 @@ def plot_by_country(dataframe, country, param1, param2):
 
 
 
+def plot_by_country2(dataframe, country, param1, param2):
+    temp_df = dataframe[dataframe['Country'] == country]
+    fig = px.scatter_mapbox(temp_df, lat='lat', lon='lng', size=param1, color=param2, size_max=20,   mapbox_style='stamen-toner', color_continuous_scale= px.colors.sequential.Agsunset_r,
+    hover_name=temp_df['City'], height=800, width=900, zoom=4)
+
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.subheader('Line chart of {} vs {} for top cities in {}'.format(param1, param2, country))
+
+    col1, col2 =st.columns(2)
+    top1 = dataframe[dataframe['Country'] == country][['City',param1]].sort_values(by = param1, ascending=False).head(25)
+    top2 = dataframe[dataframe['Country'] == country][['City',param2]].sort_values(by = param2, ascending=False).head(25)
+
+    with col1:
+        st.write('Top cities in {} for {}'.format(country, param1))
+        st.dataframe(top1)
+        # fig1 = px.bar(top1, 'City', param1)
+        # st.plotly_chart(fig1)
+        
+    with col2:
+        st.write('Top cities in {} for {}'.format(country, param2))
+        st.dataframe(top2)
+        
+    
+    fig1 = px.bar(top1, 'City', param1, title='{} in top cities in {}'.format(param1, country))
+    st.plotly_chart(fig1)
+    fig2 = px.bar(top2, 'City', param2, title='{} in top cities in {}'.format(param2, country))
+    st.plotly_chart(fig2)
+
+
+
 
 def plot_by_country_city(dataframe, country,city, param1, param2):
     temp_df = dataframe[(dataframe['Country'] == country) & (dataframe['City'] == city)]
     fig = px.scatter_mapbox(temp_df, lat='lat', lon='lng', size=param1, color=param2, size_max=20, mapbox_style='carto-positron',
-    hover_name=temp_df['City'], height=900, width=1200, zoom=4)
+    hover_name=temp_df['City'], height=500, width=700, zoom=4)
     
+    col1, col2, col3, col4 = st.columns(4)
     st.plotly_chart(fig, use_container_width=True)
-    
+    with col1:
+        st.metric('Value of {} in {}'.format(param1, city), value=temp_df[param1])
+    with col2:
+        st.metric('Value of {} in {}'.format(param2, city), value=temp_df[param2])
+    with col3:
+        st.metric('Latitude of {}'.format(city), value=temp_df['lat'])
+    with col4:
+        st.metric('Longitude of {}'.format(city), value=temp_df['lng'])
 
+
+def plot_by_country_city2(dataframe, country,city, param1, param2):
+    temp_df = dataframe[(dataframe['Country'] == country) & (dataframe['City'] == city)]
+    fig = px.scatter_mapbox(temp_df, lat='lat', lon='lng', size=param1, color=param2, size_max=20, mapbox_style='stamen-toner',
+    hover_name=temp_df['City'], height=500, width=700, zoom=4)
+    
+    col1, col2, col3, col4 = st.columns(4)
+    st.plotly_chart(fig, use_container_width=True)
+    with col1:
+        st.metric('Value of {} in {}'.format(param1, city), value=temp_df[param1])
+    with col2:
+        st.metric('Value of {} in {}'.format(param2, city), value=temp_df[param2])
+    with col3:
+        st.metric('Latitude of {}'.format(city), value=temp_df['lat'])
+    with col4:
+        st.metric('Longitude of {}'.format(city), value=temp_df['lng'])
 
 
 
 st.set_page_config(page_title='AQI Index', layout='wide')
 st.sidebar.header('AQI Globe')
+st.header('AQI Globe')
+st.markdown("*Explore air quality index values across different cities worldwide*")
+st.markdown("---")
 option = st.sidebar.radio('Choose', ['Check AQI', 'About the project'])
 if option == 'Check AQI':
     country = st.sidebar.selectbox('Select Country', list(sorted(final['Country'].unique())))
@@ -65,7 +123,14 @@ if option == 'Check AQI':
 
     primary = st.sidebar.selectbox('Choose primary parameter', final.columns[2:12:2])
     secondary = st.sidebar.selectbox('Choose secondary parameter' ,[cols for cols in final.columns[2:12:2]if cols != primary])
-    if city == '-':
-        plot_by_country(final, country, primary, secondary)
+    st.radio('Choose type of graph',['Carto Positron', 'Stamen Toner'], key='graph')
+    if st.session_state['graph'] == 'Carto Positron':
+        if city == '-':
+            plot_by_country(final, country, primary, secondary)
+        else:
+            plot_by_country_city(final, country,city,primary, secondary)
     else:
-        plot_by_country_city(final, country,city,primary, secondary)
+        if city == '-':
+            plot_by_country2(final, country, primary, secondary)
+        else:
+            plot_by_country_city2(final, country,city,primary, secondary)
