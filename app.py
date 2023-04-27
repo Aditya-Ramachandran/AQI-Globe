@@ -111,7 +111,22 @@ st.set_page_config(page_title='AQI Index', layout='wide')
 st.sidebar.header('AQI Globe')
 st.header('AQI Globe')
 st.markdown("*Explore air quality index values across different cities worldwide*")
+# st.markdown("---")
+
+st.subheader('How to use?')
+st.write('* Select the country from the dropdown.')
+st.write('* For the country overall, select "-" in the city dropdown.')
+st.write('* You can also choose a specific city from the selected country in the city dropdown.')
+st.write('* Select the primary and secondary parameters from their respective dropdowns.')
+st.write('* The primary parameter represents the size of the bubble, and the secondary parameter represents the color of the bubble.')
+st.write('* Scroll below the graph to see more stats of the selected country')
+
 st.markdown("---")
+
+
+
+
+
 option = st.sidebar.radio('Choose', ['Check AQI', 'About the project'])
 if option == 'Check AQI':
     country = st.sidebar.selectbox('Select Country', list(sorted(final['Country'].unique())))
@@ -123,7 +138,7 @@ if option == 'Check AQI':
 
     primary = st.sidebar.selectbox('Choose primary parameter', final.columns[2:12:2])
     secondary = st.sidebar.selectbox('Choose secondary parameter' ,[cols for cols in final.columns[2:12:2]if cols != primary])
-    st.radio('Choose type of graph',['Carto Positron', 'Stamen Toner'], key='graph')
+    st.radio('Choose style of graph',['Carto Positron', 'Stamen Toner'], key='graph')
     if st.session_state['graph'] == 'Carto Positron':
         if city == '-':
             plot_by_country(final, country, primary, secondary)
