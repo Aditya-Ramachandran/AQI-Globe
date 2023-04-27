@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import streamlit as st
+from streamlit.components.v1 import html
 
 final = pd.read_csv('Dataset/AQI and Lat Long of Countries.csv')
 final.dropna(inplace=True)
@@ -143,7 +144,7 @@ def plot_by_country_city2(dataframe, country,city, param1, param2):
 
 
 
-st.set_page_config(page_title='AQI Index', layout='wide')
+st.set_page_config(page_title='AQI Globe', layout='wide')
 st.sidebar.header('AQI Globe')
 st.header('AQI Globe')
 st.markdown("*Explore air quality index values across different cities worldwide*")
@@ -155,6 +156,13 @@ st.markdown("*Explore air quality index values across different cities worldwide
 st.markdown("---")
 
 
+# st.sidebar.markdown(
+#     """
+#     <a href="https://twitter.com/YOUR_TWITTER_USERNAME" target="_blank">
+#         <img src="https://img.icons8.com/color/48/000000/twitter--v1.png"/>
+#     </a>
+#     """
+#     , unsafe_allow_html=True)
 
 
 
@@ -213,3 +221,19 @@ if option == 'Learn about AQI Globe':
     st.write('* Ozone: Ozone is a gas that can form in the atmosphere through a chemical reaction between sunlight and other pollutants. High levels of ozone can be harmful to human health, particularly for those with respiratory issues.')
     st.write('* Carbon Monoxide (CO): CO is a colorless, odorless gas that is produced by the incomplete burning of fossil fuels. High levels of CO can be toxic to humans and can cause headaches, dizziness, and nausea')
     st.markdown('---')
+
+
+
+# st.markdown(
+#     """
+#     <div style="display:flex; justify-content:center; align-items:center;">
+#         <p justify-content:center>Reach Out To Me On </p>
+#             <a href="https://twitter.com/YOUR_TWITTER_USERNAME" target="_blank">
+#                 <img src="https://img.icons8.com/color/48/000000/github.png"/>
+#             </a>
+#             <a href="https://www.linkedin.com/in/YOUR_LINKEDIN_PROFILE" target="_blank">
+#                 <img src="https://img.icons8.com/color/48/000000/linkedin.png"/>
+#             </a>
+#         </div>
+#         """
+#         , unsafe_allow_html=True)
