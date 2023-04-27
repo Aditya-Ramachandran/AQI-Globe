@@ -113,13 +113,8 @@ st.header('AQI Globe')
 st.markdown("*Explore air quality index values across different cities worldwide*")
 # st.markdown("---")
 
-st.subheader('How to use?')
-st.write('* Select the country from the dropdown.')
-st.write('* For the country overall, select "-" in the city dropdown.')
-st.write('* You can also choose a specific city from the selected country in the city dropdown.')
-st.write('* Select the primary and secondary parameters from their respective dropdowns.')
-st.write('* The primary parameter represents the size of the bubble, and the secondary parameter represents the color of the bubble.')
-st.write('* Scroll below the graph to see more stats of the selected country')
+# if btn == False:
+
 
 st.markdown("---")
 
@@ -138,6 +133,20 @@ if option == 'Check AQI':
 
     primary = st.sidebar.selectbox('Choose primary parameter', final.columns[2:12:2])
     secondary = st.sidebar.selectbox('Choose secondary parameter' ,[cols for cols in final.columns[2:12:2]if cols != primary])
+
+    btn = st.sidebar.button('View Help',on_click=None)
+    if btn == True:
+        st.subheader('How to use?')
+        st.write('* Select the country from the dropdown.')
+        st.write('* For the country overall, select "-" in the city dropdown.')
+        st.write('* You can also choose a specific city from the selected country in the city dropdown.')
+        st.write('* Select the primary and secondary parameters from their respective dropdowns.')
+        st.write('* The primary parameter represents the size of the bubble, and the secondary parameter represents the color of the bubble.')
+        st.write('* Scroll below the graph to see more stats of the selected country')
+
+        btn = st.sidebar.button('Hide Help',on_click=None)
+        st.markdown("---")
+
     st.radio('Choose style of graph',['Carto Positron', 'Stamen Toner'], key='graph')
     if st.session_state['graph'] == 'Carto Positron':
         if city == '-':
