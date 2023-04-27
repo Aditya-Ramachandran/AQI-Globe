@@ -6,7 +6,29 @@ import streamlit as st
 final = pd.read_csv('Dataset/AQI and Lat Long of Countries.csv')
 final.dropna(inplace=True)
 
+def range_particulate_matter():
+    st.subheader('Range of the particulate matter')
 
+    data = {
+    'Pollutant': ['PM2.5', 'PM10', 'Ozone', 'CO', 'NO2'],
+    # 'Description': [
+    #     'Particulate Matter with a diameter of 2.5 micrometers or less',
+    #     'Particulate Matter with a diameter of 10 micrometers or less',
+    #     'Ozone gas concentration in the air',
+    #     'Carbon monoxide gas concentration in the air',
+    #     'Nitrogen dioxide gas concentration in the air'
+    # ],
+    'Good': ['0-12 μg/m³', '0-54 μg/m³', '0-54 ppb', '0-4.4 ppm', '0-53 ppb'],
+    'Moderate': ['12.1-35.4 μg/m³', '55-154 μg/m³', '55-70 ppb', '4.5-9.4 ppm', '54-100 ppb'],
+    'Unhealthy for Sensitive Groups': ['35.5-55.4 μg/m³', '155-254 μg/m³', '71-85 ppb', '9.5-12.4 ppm', '101-360 ppb'],
+    'Unhealthy': ['55.5-150.4 μg/m³', '255-354 μg/m³', '86-105 ppb', '12.5-15.4 ppm', '361-649 ppb'],
+    'Very Unhealthy': ['150.5-250.4 μg/m³', '355-424 μg/m³', '106-200 ppb', '15.5-30.4 ppm', '650-1249 ppb'],
+    'Hazardous': ['250.5+ μg/m³', '425+ μg/m³', '201+ ppb', '30.5+ ppm', '-']
+    }
+
+    df = pd.DataFrame(data)
+
+    st.write(df)
 
 
 def plot_by_country(dataframe, country, param1, param2):
@@ -15,6 +37,9 @@ def plot_by_country(dataframe, country, param1, param2):
     hover_name=temp_df['City'], height=800, width=900, zoom=4, title='{} vs {} for {}'.format(param1, param2, country))
 
     st.plotly_chart(fig, use_container_width=True)
+
+    range_particulate_matter()
+    st.markdown('---')
 
     st.subheader('Line chart of {} vs {} for top cities in {}'.format(param1, param2, country))
 
@@ -47,6 +72,10 @@ def plot_by_country2(dataframe, country, param1, param2):
 
     st.plotly_chart(fig, use_container_width=True)
 
+    range_particulate_matter()
+    st.markdown('---')
+
+
     st.subheader('Line chart of {} vs {} for top cities in {}'.format(param1, param2, country))
 
     col1, col2 =st.columns(2)
@@ -76,7 +105,8 @@ def plot_by_country_city(dataframe, country,city, param1, param2):
     temp_df = dataframe[(dataframe['Country'] == country) & (dataframe['City'] == city)]
     fig = px.scatter_mapbox(temp_df, lat='lat', lon='lng', size=param1, color=param2, size_max=20, mapbox_style='carto-positron',
     hover_name=temp_df['City'], height=500, width=700, zoom=4)
-    
+
+
     col1, col2, col3, col4 = st.columns(4)
     st.plotly_chart(fig, use_container_width=True)
     with col1:
@@ -87,6 +117,9 @@ def plot_by_country_city(dataframe, country,city, param1, param2):
         st.metric('Latitude of {}'.format(city), value=temp_df['lat'])
     with col4:
         st.metric('Longitude of {}'.format(city), value=temp_df['lng'])
+
+    range_particulate_matter()
+    st.markdown('---')
 
 
 def plot_by_country_city2(dataframe, country,city, param1, param2):
@@ -104,6 +137,9 @@ def plot_by_country_city2(dataframe, country,city, param1, param2):
         st.metric('Latitude of {}'.format(city), value=temp_df['lat'])
     with col4:
         st.metric('Longitude of {}'.format(city), value=temp_df['lng'])
+
+    range_particulate_matter()
+    st.markdown('---')
 
 
 
@@ -177,5 +213,3 @@ if option == 'Learn about AQI Globe':
     st.write('* Ozone: Ozone is a gas that can form in the atmosphere through a chemical reaction between sunlight and other pollutants. High levels of ozone can be harmful to human health, particularly for those with respiratory issues.')
     st.write('* Carbon Monoxide (CO): CO is a colorless, odorless gas that is produced by the incomplete burning of fossil fuels. High levels of CO can be toxic to humans and can cause headaches, dizziness, and nausea')
     st.markdown('---')
-    st.subheader('Range of the particulate matter')
-    
