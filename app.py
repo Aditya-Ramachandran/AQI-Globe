@@ -12,7 +12,7 @@ final.dropna(inplace=True)
 def plot_by_country(dataframe, country, param1, param2):
     temp_df = dataframe[dataframe['Country'] == country]
     fig = px.scatter_mapbox(temp_df, lat='lat', lon='lng', size=param1, color=param2, size_max=20,   mapbox_style='carto-positron', color_continuous_scale= px.colors.sequential.Agsunset_r,
-    hover_name=temp_df['City'], height=800, width=900, zoom=4)
+    hover_name=temp_df['City'], height=800, width=900, zoom=4, title='{} vs {} for {}'.format(param1, param2, country))
 
     st.plotly_chart(fig, use_container_width=True)
 
@@ -43,7 +43,7 @@ def plot_by_country(dataframe, country, param1, param2):
 def plot_by_country2(dataframe, country, param1, param2):
     temp_df = dataframe[dataframe['Country'] == country]
     fig = px.scatter_mapbox(temp_df, lat='lat', lon='lng', size=param1, color=param2, size_max=20,   mapbox_style='stamen-toner', color_continuous_scale= px.colors.sequential.Agsunset_r,
-    hover_name=temp_df['City'], height=800, width=900, zoom=4)
+    hover_name=temp_df['City'], height=800, width=900, zoom=4, title='{} vs {} for {}'.format(param1, param2, country))
 
     st.plotly_chart(fig, use_container_width=True)
 
@@ -133,6 +133,9 @@ if option == 'Check AQI':
 
     primary = st.sidebar.selectbox('Choose primary parameter', final.columns[2:12:2])
     secondary = st.sidebar.selectbox('Choose secondary parameter' ,[cols for cols in final.columns[2:12:2]if cols != primary])
+    st.sidebar.markdown('##### *Graph is auto-plotted after parameter selection* ')
+    # st.sidebar.markdown('##### *Click View Help for instructions* ')
+
 
     btn = st.sidebar.button('View Help',on_click=None)
     if btn == True:
