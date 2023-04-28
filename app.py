@@ -222,6 +222,47 @@ if option == 'Learn about AQI Globe':
     st.write('* Carbon Monoxide (CO): CO is a colorless, odorless gas that is produced by the incomplete burning of fossil fuels. High levels of CO can be toxic to humans and can cause headaches, dizziness, and nausea')
     st.markdown('---')
 
+    st.subheader('Connect with me!')
+
+    st.markdown('[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/yourusername/)](https://www.linkedin.com/in/aditya-ramachandran-27b2ab24a/) ''   [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github&link=https://github.com/Aditya-Ramachandran)](https://github.com/Aditya-Ramachandran)')
+
+    st.write('\n')
+    st.write('\n')
+    st.write('\n')
+
+# with st.form("my_form", clear_on_submit=True):
+#     st.write("Enter your contact details below:")
+#     name = st.text_input("Enter your name:")
+#     email = st.text_input("Enter your email:")
+#     message = st.text_area("Enter your message:")
+
+#     submitted = st.form_submit_button("Submit")
+
+#     if submitted:
+#         if len(name)== 0 and len(email) == 0 and len(message)== 0:
+#             st.warning('Please don\'t leave any field blank')
+
+#     if len(name)>0 and len(email)>0 and len(message)>0:
+#     # If the form is submitted, print the details to the console
+#         if submitted:
+#             st.write("Name:", name)
+#             st.write("Email:", email)
+#             st.write("Message:", message)
+
+
+# st.markdown("""
+# <form>
+#     <label for="name">Name:</label><br>
+#     <input type="text" id="name" name="name"><br>
+#     <label for="email">Email:</label><br>
+#     <input type="email" id="email" name="email"><br>
+#     <label for="message">Message:</label><br>
+#     <textarea id="message" name="message"></textarea><br>
+#     <input type="submit" value="Submit">
+# </form>
+# """, unsafe_allow_html=True)
+            
+
 
 
 # st.markdown(
