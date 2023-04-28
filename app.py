@@ -59,9 +59,9 @@ def plot_by_country(dataframe, country, param1, param2):
         st.dataframe(top2)
         
     
-    fig1 = px.bar(top1, 'City', param1, title='{} in top cities in {}'.format(param1, country))
+    fig1 = px.bar(top1, 'City', param1, title='{} in top cities in {}'.format(param1, country), color=param1, color_continuous_scale=px.colors.sequential.Oryel)
     st.plotly_chart(fig1)
-    fig2 = px.bar(top2, 'City', param2, title='{} in top cities in {}'.format(param2, country))
+    fig2 = px.bar(top2, 'City', param2, title='{} in top cities in {}'.format(param2, country), color=param2, color_continuous_scale=px.colors.sequential.Pinkyl)
     st.plotly_chart(fig2)
 
 
@@ -94,9 +94,9 @@ def plot_by_country2(dataframe, country, param1, param2):
         st.dataframe(top2)
         
     
-    fig1 = px.bar(top1, 'City', param1, title='{} in top cities in {}'.format(param1, country))
+    fig1 = px.bar(top1, 'City', param1, title='{} in top cities in {}'.format(param1, country),color=param1, color_continuous_scale=px.colors.sequential.Oryel)
     st.plotly_chart(fig1)
-    fig2 = px.bar(top2, 'City', param2, title='{} in top cities in {}'.format(param2, country))
+    fig2 = px.bar(top2, 'City', param2, title='{} in top cities in {}'.format(param2, country), color=param2, color_continuous_scale=px.colors.sequential.Pinkyl)
     st.plotly_chart(fig2)
 
 
