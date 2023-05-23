@@ -4,7 +4,7 @@
 
 [![Made with Plotly](https://img.shields.io/badge/Made%20with-Plotly-1f425f.svg)](https://plotly.com/)  [![Made with Python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)  [![Made with Streamlit](https://img.shields.io/badge/Made%20with-Streamlit-1f425f.svg)](https://www.streamlit.io/) <br>
 <br>
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://aqi-globe.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://siesmostream.streamlit.app/)
 
 
 
